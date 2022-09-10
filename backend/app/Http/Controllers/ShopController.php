@@ -53,6 +53,9 @@ class ShopController extends Controller
            }
         
         $flight->shop_name = $request->shop_name;
+        $flight->shop_phone = $request->shop_phone;
+        $flight->address_latitude = $request->address_latitude;
+        $flight->address_longitude = $request->address_longitude;
         $flight->shop_location = $request->shop_location;
         $flight->status = $request->input('status',0);
         $flight->save();
@@ -83,7 +86,8 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        return view('shop/shop_edit');
+        $data= ShopModel::find($id);
+        return view('shop/shop_edit', compact('data'));
     }
 
     /**
@@ -107,6 +111,8 @@ class ShopController extends Controller
         
         $flight->shop_name = $request->shop_name;
         $flight->shop_location = $request->shop_location;
+        $flight->address_latitude = $request->address_latitude;
+        $flight->address_longitude = $request->address_longitude;
         $flight->status = $request->input('status',0);
         $flight->save();
 
@@ -125,6 +131,12 @@ class ShopController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data= ShopModel::find($id);
+        $data->delete();
+        return response()->json([
+            'status'=>200,
+            'message'=>'Data Delete Successfully',
+            'data'=>$data
+        ]);
     }
 }
