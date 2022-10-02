@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Admin;
+use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +17,9 @@ class UserFactory extends Factory
      * @var string
      */
     protected $model = User::class;
+
+    // protected $model = Admin::class;
+    // protected $model = Seller::class;
 
     /**
      * Define the model's default state.

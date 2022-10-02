@@ -56,7 +56,14 @@ class AuthController extends Controller
                         'token_type' => 'Bearer',
                     ]]);
     }
-    public function Logout(){
-        
+    public function Logout(Request $request){
+        // Revoke all tokens...
+        $request->user()->tokens()->delete();
+        return send_ms('User Logout',true,200);
+    }
+
+
+    public function User(Request $request){
+        return AuthResource::make($request->user());
     }
 }

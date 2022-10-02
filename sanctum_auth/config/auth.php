@@ -46,6 +46,42 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        // custome added============
+
+        // user gurad=====
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+
+        ],
+        'user-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+
+        ],
+        // admin gurad=====
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+
+        ],
+        'admin-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'admins',
+
+        ],
+        // seller gurad=====
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+
+        ],
+        'seller-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'sellers',
+
+        ],
     ],
 
     /*
@@ -69,6 +105,17 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        // custom add============
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Seller::class,
         ],
 
         // 'users' => [
@@ -95,6 +142,21 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        // custom add===========
+
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'sellers' => [
+            'provider' => 'sellers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
